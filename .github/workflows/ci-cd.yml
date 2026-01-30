@@ -103,8 +103,9 @@ jobs:
             docker run -d \
               --name voice_service \
               -p 80:8000 \
-              --env-file .env \
               -e AWS_ACCESS_KEY_ID=${{ secrets.AWS_ACCESS_KEY_ID }} \
               -e AWS_SECRET_ACCESS_KEY=${{ secrets.AWS_SECRET_ACCESS_KEY }} \
               -e ELEVENLABS_API_KEY=${{ secrets.ELEVENLABS_API_KEY }} \
+              -e AWS_REGION=us-east-1 \
+              -e S3_BUCKET_NAME=voice-cloning-test \
               ${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.us-east-1.amazonaws.com/voice-service-repo:latest
